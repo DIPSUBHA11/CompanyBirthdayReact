@@ -4,7 +4,9 @@ const defaultState = {
     employeeid: '',
     employeename: '',
     filename: '',
-    employeeBirthday:''
+    employeeBirthday:'',
+    dateofjoining:'',
+    clientid:''
 }
 
 const BirthDayForm = () => {
@@ -22,6 +24,8 @@ const BirthDayForm = () => {
         data.append('name', employeeDetails.employeename)
         data.append('id', employeeDetails.employeeid)
         data.append('birthday',employeeDetails.employeeBirthday)
+        data.append('doj',employeeDetails.dateofjoining)
+        data.append('client_id',employeeDetails.clientid)
         await fetch('http://localhost:4104/upload', {
             method: 'POST',
             body: data
@@ -44,6 +48,11 @@ const BirthDayForm = () => {
                     <small></small>
                     <label>Birthday:</label>
                     <input type="date" id="birthday" name="employeeBirthday" value={employeeDetails.employeeBirthday} onChange={handleinput}></input>
+                    <label>Date Of JoinIng</label>
+                    <input type="date" id="dateofjoining" name="dateofjoining" value={employeeDetails.dateofjoining} onChange={handleinput}></input>
+                    <label>Client id</label>
+                    <input type="text" id="clientid" name="clientid" autoComplete="off" placeholder="Enter the id" value={employeeDetails.clientid} onChange={handleinput} />
+                    <small></small>
                 </div>
                 <input ref={fileInputRef} type="file" name="filename" accept="image/x-png, image/gif, image/jpeg" value={employeeDetails.filename} onChange={handleinput} />
                 <input type="submit" value="submit" />
