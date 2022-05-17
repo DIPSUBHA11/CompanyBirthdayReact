@@ -37,7 +37,7 @@ const BirthDayForm = () => {
         data.append('birthday', employeeDetails.employeeBirthday)
         data.append('doj', employeeDetails.dateofjoining)
         data.append('client_id', employeeDetails.clientid)
-        await fetch('http://localhost:4104/upload', {
+        await fetch('http://localhost:8208/upload', {
             method: 'POST',
             body: data
         }).
@@ -51,7 +51,7 @@ const BirthDayForm = () => {
         const data = new FormData();
         data.append('ImageFile', TempaltefileInputRef.current.files[0])
         data.append('id', templateDetails.templateId)
-        await fetch('http://localhost:4104/templateData', {
+        await fetch('http://localhost:8208/templateData', {
             method: 'POST',
             body: data
         }).
