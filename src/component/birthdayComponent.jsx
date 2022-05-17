@@ -40,8 +40,7 @@ const BirthDayForm = () => {
         await fetch('http://localhost:8208/upload', {
             method: 'POST',
             body: data
-        }).
-            then(res => {
+        }).then(res => {
                 if (res.status === 200)
                     SetEmployeeDetails(defaultState)
             })
@@ -54,8 +53,7 @@ const BirthDayForm = () => {
         await fetch('http://localhost:8208/templateData', {
             method: 'POST',
             body: data
-        }).
-            then(res => {
+        }).then(res => {
                 if (res.status === 200)
                 settemplateDetails(defaultTemplateState)
             })
