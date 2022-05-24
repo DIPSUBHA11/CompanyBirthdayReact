@@ -8,25 +8,13 @@ const defaultState = {
     dateofjoining: '',
     clientid: ''
 }
-const defaultTemplateState={
-    templateId:"",
-    templatename:""
-
-}
 const BirthDayForm = () => {
-    const[templateDetails,settemplateDetails]=useState(defaultTemplateState)
     const [employeeDetails, SetEmployeeDetails] = useState(defaultState)
     const fileInputRef = useRef();
-    const TempaltefileInputRef=useRef();
     const handleinput = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         SetEmployeeDetails({ ...employeeDetails, [name]: value })
-    }
-    const handletemplateinput = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        settemplateDetails({ ...templateDetails, [name]: value })
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -43,19 +31,6 @@ const BirthDayForm = () => {
         }).then(res => {
                 if (res.status === 200)
                     SetEmployeeDetails(defaultState)
-            })
-    }
-    const handleTemplateSubmit = async (e) => {
-        e.preventDefault()
-        const data = new FormData();
-        data.append('ImageFile', TempaltefileInputRef.current.files[0])
-        data.append('id', templateDetails.templateId)
-        await fetch('http://10.139.166.21:8208/templateData', {
-            method: 'POST',
-            body: data
-        }).then(res => {
-                if (res.status === 200)
-                settemplateDetails(defaultTemplateState)
             })
     }
     return (
@@ -79,16 +54,6 @@ const BirthDayForm = () => {
                         <small></small>
                     </div>
                     <input ref={fileInputRef} type="file" name="filename" accept="image/x-png, image/gif, image/jpeg" value={employeeDetails.filename} onChange={handleinput} />
-                    <input type="submit" value="submit" />
-                </form>
-            </div>
-            <div>
-                <form method="post" onSubmit={handleTemplateSubmit} encType="multipart/form-data">
-                    <h2>Enter Template</h2>
-                    <label>Id No-:</label>
-                    <input type="text" id="id_name" name="templateId" autoComplete="off" placeholder="Enter the id" value={templateDetails.templateId} onChange={handletemplateinput} />
-                    <small></small>
-                    <input ref={TempaltefileInputRef} type="file" name="templatename" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename} onChange={handletemplateinput} />
                     <input type="submit" value="submit" />
                 </form>
             </div>
