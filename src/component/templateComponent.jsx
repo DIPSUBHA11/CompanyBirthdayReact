@@ -1,10 +1,12 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 const defaultTemplateState = {
     templateId: "",
-    templatename: ""
+    templatename: "",
+    templatename2: "",
+    templatename3: ""
 
 }
 const TemplateForm = () => {
@@ -12,9 +14,9 @@ const TemplateForm = () => {
     const tempalteforegroundfileInputRef = useRef();
     const tempaltebackgroundfileInputRef = useRef();
     const tempalteplaceholderfileInputRef = useRef();
-    const options = [
-        'one', 'two', 'three'
-    ];
+    const [options,setOptions] = useState([])
+    const [category,getcategoty]= useState('')
+    const [categoryId,setCategoryId]=useState('')
     const defaultOption = options[0];
     const handletemplateinput = (e) => {
         const name = e.target.name;
@@ -27,8 +29,8 @@ const TemplateForm = () => {
         data.append('foregroundImage', tempalteforegroundfileInputRef.current.files[0])
         data.append('backgroungImage', tempaltebackgroundfileInputRef.current.files[0])
         data.append('placeholderImage', tempalteplaceholderfileInputRef.current.files[0])
-        data.append('id', templateDetails.templateId)
-        await fetch('http://10.139.166.21:8208/templateData', {
+        data.append('id', categoryId)
+        await fetch('http://localhost:8208/templateData', {
             method: 'POST',
             body: data
         }).then(res => {
@@ -37,8 +39,30 @@ const TemplateForm = () => {
         })
     }
     const selectCategory = (e) => {
-        console.log(e)
+        console.log(e.value)
+        category.map((ele)=>{
+            if(ele.event_category===e.value)
+            {
+                setCategoryId(ele._id)
+                console.log(categoryId)
+            }
+        })
     }
+    const getOptions = async ()=>{
+        await fetch('http://localhost:8208/get-event-categories',{
+            method: 'GET'
+        }).then(response => response.json())
+        .then(data => {
+            let option = data.categories.map((ele)=>{
+                return ele.event_category
+            })
+            setOptions(option)
+            getcategoty(data.categories)
+        })
+    }
+    useEffect(()=>{
+        getOptions()
+    },[])
     return (
         <>
             <div className='template_form'>
@@ -46,7 +70,7 @@ const TemplateForm = () => {
                     <h2 className='text-center' >Template</h2>
                     <div style={{display:'flex'}}>
                         <label>Select Category</label>
-                        <Dropdown options={options} onChange={selectCategory} value={defaultOption} placeholder="Select an option" />
+                        <Dropdown options={options} onChange={selectCategory}  value={defaultOption} placeholder="Select an option" />
                     </div>
                     <div className="field">
                         <div>
@@ -55,11 +79,11 @@ const TemplateForm = () => {
                         </div>
                         <div>
                             <label>Background Image</label>
-                            <input ref={tempaltebackgroundfileInputRef} type="file" name="templatename" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename} onChange={handletemplateinput} />
+                            <input ref={tempaltebackgroundfileInputRef} type="file" name="templatename2" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename2} onChange={handletemplateinput} />
                         </div>
                         <div>
                             <label>Placeholder Image</label>
-                            <input ref={tempalteplaceholderfileInputRef} type="file" name="templatename" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename} onChange={handletemplateinput} />
+                            <input ref={tempalteplaceholderfileInputRef} type="file" name="templatename3" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename3} onChange={handletemplateinput} />
                         </div>
                         <div className='submitButton'>
                             <input type="submit" value="submit" />
