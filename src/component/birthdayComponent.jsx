@@ -37,7 +37,7 @@ const BirthDayForm = () => {
         <>
             <div className='birthday_form'>
                 <form method="post" onSubmit={handleSubmit} encType="multipart/form-data">
-                    <h1 className='text-center'>Enter Employee details</h1>
+                    <h1 className='text-center'>Enter User Details</h1>
                     <div className="field">
                         <div>
                             <label>Id No :</label>
