@@ -1,4 +1,7 @@
 import React, { useRef, useState } from 'react'
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+
 const defaultTemplateState = {
     templateId: "",
     templatename: ""
@@ -9,6 +12,10 @@ const TemplateForm = () => {
     const tempalteforegroundfileInputRef = useRef();
     const tempaltebackgroundfileInputRef = useRef();
     const tempalteplaceholderfileInputRef = useRef();
+    const options = [
+        'one', 'two', 'three'
+    ];
+    const defaultOption = options[0];
     const handletemplateinput = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -29,11 +36,18 @@ const TemplateForm = () => {
                 settemplateDetails(defaultTemplateState)
         })
     }
+    const selectCategory = (e) => {
+        console.log(e)
+    }
     return (
         <>
             <div className='template_form'>
                 <form method="post" onSubmit={handleTemplateSubmit} encType="multipart/form-data">
                     <h2 className='text-center' >Template</h2>
+                    <div style={{display:'flex'}}>
+                        <label>Select Category</label>
+                        <Dropdown options={options} onChange={selectCategory} value={defaultOption} placeholder="Select an option" />
+                    </div>
                     <div className="field">
                         <div>
                             <label>Foreground Image</label>
