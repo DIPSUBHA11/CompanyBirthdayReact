@@ -75,15 +75,15 @@ const TemplateForm = () => {
                     <div className="field">
                         <div>
                             <label>Foreground Image</label>
-                            <input ref={tempalteforegroundfileInputRef} type="file" name="templatename" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename} onChange={handletemplateinput} />
+                            <input className="form-control"  ref={tempalteforegroundfileInputRef} type="file" name="templatename" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename} onChange={handletemplateinput} />
                         </div>
                         <div>
                             <label>Background Image</label>
-                            <input ref={tempaltebackgroundfileInputRef} type="file" name="templatename2" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename2} onChange={handletemplateinput} />
+                            <input className="form-control" ref={tempaltebackgroundfileInputRef} type="file" name="templatename2" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename2} onChange={handletemplateinput} />
                         </div>
                         <div>
                             <label>Placeholder Image</label>
-                            <input ref={tempalteplaceholderfileInputRef} type="file" name="templatename3" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename3} onChange={handletemplateinput} />
+                            <input className="form-control" ref={tempalteplaceholderfileInputRef} type="file" name="templatename3" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename3} onChange={handletemplateinput} />
                         </div>
                         <div className='submitButton'>
                             <button className="btn btn-primary" type="submit">submit</button>

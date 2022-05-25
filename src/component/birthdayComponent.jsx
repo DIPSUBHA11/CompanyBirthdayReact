@@ -41,30 +41,30 @@ const BirthDayForm = () => {
                     <div className="field">
                         <div>
                             <label>Id No :</label>
-                            <input type="text" id="id_name" name="employeeid" autoComplete="off" placeholder="Enter the id" value={employeeDetails.employeeid} onChange={handleinput} />
+                            <input className="form-control" type="text" id="id_name" name="employeeid" autoComplete="off" placeholder="Enter the id" value={employeeDetails.employeeid} onChange={handleinput} />
                         </div>
                         {/* <small></small> */}
                         <div>
                             <label>Name :</label>
-                            <input type="text" id="fname" name="employeename" autoComplete="off" placeholder="Enter the name" value={employeeDetails.employeename} onChange={handleinput} />
+                            <input className="form-control" type="text" id="fname" name="employeename" autoComplete="off" placeholder="Enter the name" value={employeeDetails.employeename} onChange={handleinput} />
                         </div>
                         {/* <small></small> */}
                         <div>
                             <label>Birthday :</label>
-                            <input type="date" id="birthday" name="employeeBirthday" value={employeeDetails.employeeBirthday} onChange={handleinput}></input>
+                            <input className="form-control" type="date" id="birthday" name="employeeBirthday" value={employeeDetails.employeeBirthday} onChange={handleinput}></input>
                         </div>
                         <div>
                             <label>Date Of JoinIng :</label>
-                            <input type="date" id="dateofjoining" name="dateofjoining" value={employeeDetails.dateofjoining} onChange={handleinput}></input>
+                            <input className="form-control"  type="date" id="dateofjoining" name="dateofjoining" value={employeeDetails.dateofjoining} onChange={handleinput}></input>
                         </div>
                         <div>
                             <label>Client id :</label>
-                            <input type="text" id="clientid" name="clientid" autoComplete="off" placeholder="Enter the id" value={employeeDetails.clientid} onChange={handleinput} />
+                            <input className="form-control" type="text" id="clientid" name="clientid" autoComplete="off" placeholder="Enter the id" value={employeeDetails.clientid} onChange={handleinput} />
                         </div>
                         {/* <small></small> */}
                         <div>
                             <label>Select Image :</label>
-                            <input ref={fileInputRef} type="file" name="filename" accept="image/x-png, image/gif, image/jpeg" value={employeeDetails.filename} onChange={handleinput} />
+                            <input className="form-control"  ref={fileInputRef} type="file" name="filename" accept="image/x-png, image/gif, image/jpeg" value={employeeDetails.filename} onChange={handleinput} />
                         </div>
                         <div className='submitButton'>
                             <button className="btn btn-primary" type="submit">submit</button>
