@@ -30,7 +30,7 @@ const TemplateForm = () => {
         data.append('templatename2', tempaltebackgroundfileInputRef.current.files[0])
         data.append('templatename3', tempalteplaceholderfileInputRef.current.files[0])
         data.append('id', categoryId)
-        await fetch('http://10.139.166.21/templateData', {
+        await fetch('http://10.139.166.21:8208/templateData', {
             method: 'POST',
             body: data
         }).then(res => {
@@ -49,7 +49,7 @@ const TemplateForm = () => {
         })
     }
     const getOptions = async ()=>{
-        await fetch('http://10.139.166.21/get-event-categories',{
+        await fetch('http://10.139.166.21:8208/get-event-categories',{
             method: 'GET'
         }).then(response => response.json())
         .then(data => {
