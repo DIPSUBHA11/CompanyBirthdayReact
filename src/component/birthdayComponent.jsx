@@ -67,7 +67,7 @@ const BirthDayForm = () => {
                             <input ref={fileInputRef} type="file" name="filename" accept="image/x-png, image/gif, image/jpeg" value={employeeDetails.filename} onChange={handleinput} />
                         </div>
                         <div className='submitButton'>
-                            <input type="submit" value="submit" />
+                            <button className="btn btn-primary" type="submit">submit</button>
                         </div>
                     </div>
                 </form>

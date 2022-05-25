@@ -26,11 +26,11 @@ const TemplateForm = () => {
     const handleTemplateSubmit = async (e) => {
         e.preventDefault()
         const data = new FormData();
-        data.append('foregroundImage', tempalteforegroundfileInputRef.current.files[0])
-        data.append('backgroungImage', tempaltebackgroundfileInputRef.current.files[0])
-        data.append('placeholderImage', tempalteplaceholderfileInputRef.current.files[0])
+        data.append('templatename', tempalteforegroundfileInputRef.current.files[0])
+        data.append('templatename2', tempaltebackgroundfileInputRef.current.files[0])
+        data.append('templatename3', tempalteplaceholderfileInputRef.current.files[0])
         data.append('id', categoryId)
-        await fetch('http://localhost:8208/templateData', {
+        await fetch('http://10.139.166.21/templateData', {
             method: 'POST',
             body: data
         }).then(res => {
@@ -49,7 +49,7 @@ const TemplateForm = () => {
         })
     }
     const getOptions = async ()=>{
-        await fetch('http://localhost:8208/get-event-categories',{
+        await fetch('http://10.139.166.21/get-event-categories',{
             method: 'GET'
         }).then(response => response.json())
         .then(data => {
@@ -86,7 +86,7 @@ const TemplateForm = () => {
                             <input ref={tempalteplaceholderfileInputRef} type="file" name="templatename3" accept="image/x-png, image/gif, image/jpeg" value={templateDetails.templatename3} onChange={handletemplateinput} />
                         </div>
                         <div className='submitButton'>
-                            <input type="submit" value="submit" />
+                            <button className="btn btn-primary" type="submit">submit</button>
                         </div>
                     </div>
                 </form>
